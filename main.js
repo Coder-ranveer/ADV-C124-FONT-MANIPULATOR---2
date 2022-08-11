@@ -1,29 +1,26 @@
-function setup()
-{
-    video = createCanvas(VIDEO);
-    video.size(550,500);
+function setup(){
+    video = createCapture(VIDEO);
+    video.size(400,400);
+    video.position(10,50);
 
-    canvas = createCanvas(550,550);
-    canvas.position(560,150);
+    canvas = createCanvas(800,400);
+    canvas.position(430,130);
 
-    poseNet = ml5.poseNet(video, modelLoaded);
-    poseNet.on('pose', gotPoses)
+    poseNet = ml5.poseNet(video,modelDone);
+    poseNet.on('pose',gotposes);
 }
 
-function draw()
-{
-    background('#5196e3');
+function draw(){
+    background("#5196e3");
 }
 
-function modelLoaded()
-{
-    console.log('PoseNet Is Initialized');
+function modelDone(){
+    console.log("PoseNet Is Initialized And Loaded");
 }
 
-function gotPoses(results)
-{
-    if(results.length > 0)
-    {
-        console.log(results);
+function gotposes(results,error){
+    if(error){
+        console.error(error);
     }
+    
 }
